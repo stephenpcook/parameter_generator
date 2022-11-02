@@ -20,3 +20,7 @@ class Prod_range(object):
             which_range -= 1
             idx = idx // current_range
         return tuple(output)
+
+    def __len__(self):
+        "Return len(self)."
+        return self.total_length

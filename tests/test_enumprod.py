@@ -28,6 +28,9 @@ def test_get_integer_too_high(pr_3_2):
         pr_3_2.iget(6)
 
 
+def test_Prod_range_len(pr_3_2):
+    assert(len(pr_3_2) == 6)
+
 @pytest.mark.skip
 def test_noninteger_inputs():
     assert False
