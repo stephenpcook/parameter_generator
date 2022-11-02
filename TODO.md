@@ -3,11 +3,12 @@
      2. DONE Can be indexed to return a tuple of the outputs
      3. DONE Returns errors for out of bounds indexes
      4. DONE Return the length of the range item
-     5. TODO Return errors for non-positive integer inputs
-     6. TODO Create documentation
-     7. TODO Be able to index with the default notation
-     8. DEFERRED Be able to index slices?
-  2. TODO Generate random samples from the prod_range for the paper
-     1. Work out how big the thing is
-     2. Create random numbers using `random.randrange`
-  3. TODO Plot the occurance of each parameter
+     5. DONE Be able to index with the default notation
+     6. DEFERRED Return errors for non-positive integer inputs
+     7. DEFERRED Be able to index slices?
+  2. DONE Generate random samples from the prod_range for the paper
+     1. DONE Work out how big the thing is (`len(Product(...))`)
+     2. DONE Create random numbers using `random.randrange`
+  3. DONE Plot the occurrence of each parameter
+  4. TODO Create documentation
+  5. TODO Refactor with better naming
