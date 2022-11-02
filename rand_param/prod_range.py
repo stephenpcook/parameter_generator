@@ -24,3 +24,6 @@ class Prod_range(object):
     def __len__(self):
         "Return len(self)."
         return self.total_length
+
+    def __getitem__(self, key):
+        return self.iget(key)
