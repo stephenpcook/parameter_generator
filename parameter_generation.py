@@ -17,7 +17,7 @@ params = {
     'slow_start_strike_rate': np.arange(1, 30.01, 6),
     'slow_start_hammer_energy': np.arange(10, 100.01, 10),
     'soft_start_duration': np.arange(0, 60.01, 10),
-    'soft_start_strike_rate': np.arange(1, 30.01, 6),
+    'soft_start_strike_rate': np.arange(30, 60.01, 6),
     'soft_start_hammer_energy': np.arange(10, 100.01, 10),
     'full_power_strike_rate': np.arange(30, 60.01, 6)
 }
@@ -32,17 +32,25 @@ def main(n_experiments=N_EXPERIMENTS, csv_out='params.csv'):
     print(f'{p[-1]=}')
     print('')
 
-    experiments = []
-    for _ in range(n_experiments):
-        experiments.append(randrange(n_max))
-
-    experiments.sort()
-
+    param_names = list(params)
+    idx_slow_start = param_names.index('slow_start_duration')
+    idx_soft_start = param_names.index('soft_start_duration')
+    idx_piling_duration = param_names.index('piling_duration')
     # Output the experiment number and the parameters
     with open(csv_out, 'w') as f:
         f.write('n,' + ','.join(params.keys()) + '\n')
-        for n in experiments:
-            f.write(f'{n},' + ','.join(str(ex) for ex in p[n]) + '\n')
+        rows_written = 0
+        while rows_written < N_EXPERIMENTS:
+            n = randrange(n_max)
+            p_n = p[n]
+            soft_slow = p_n[idx_soft_start] + p_n[idx_slow_start]
+            total = 60 * p_n[idx_piling_duration]
+            # We want to ignore parameter sets where the slow and soft are
+            # greater than the total duration
+            if soft_slow > total:
+                continue
+            f.write(f'{n},' + ','.join(str(ex) for ex in p_n) + '\n')
+            rows_written += 1
 
 
 if __name__ == "__main__":
