@@ -10,5 +10,8 @@
      1. DONE Work out how big the thing is (`len(Product(...))`)
      2. DONE Create random numbers using `random.randrange`
   3. DONE Plot the occurrence of each parameter
-  4. TODO Create documentation
-  5. TODO Refactor with better naming
+  4. TODO: Create documentation
+  5. TODO: Refactor with better naming
+  6. TODO: Improve plotting (2022-11-16)
+     1. TODO: Create plot for covariance matrix
+     2. TODO: Make command-line interface for both plotting functions

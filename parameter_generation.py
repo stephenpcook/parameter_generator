@@ -1,5 +1,8 @@
 """Parameter generation script"""
+from pathlib import Path
 from random import seed, randrange
+import logging
+
 import numpy as np
 
 from rand_param import Product
@@ -7,6 +10,8 @@ from histograms import plot_histograms
 
 N_EXPERIMENTS = 20000
 seed(123)
+THIS_DIR = Path(__file__).parent
+
 
 params = {
     'swim_speed': np.arange(0.5, 5.01, 0.5),
@@ -54,5 +59,13 @@ def main(n_experiments=N_EXPERIMENTS, csv_out='params.csv'):
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
     main(N_EXPERIMENTS, 'params.csv')
-    plot_histograms('params.csv', 'params_hist.png')
+    csv_out = Path('params.csv')
+    png_out = Path('dist/params_hist.png')
+    png_out.parent.mkdir(exist_ok=True, parents=True)
+
+    plot_histograms(csv_out, png_out, params=params, hist_args={
+                    'edgecolor': 'black', 'linewidth': 1.0})
+    logging.info(f'Data written to {csv_out}')
+    logging.info(f'Histogram written to {png_out}')

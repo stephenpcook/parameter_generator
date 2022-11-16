@@ -1,5 +1,6 @@
 venv/
 **/__pycache__/
 
+dist/
 params.csv
 params_hist.png
